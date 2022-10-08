@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const thoughtSchema = require('./Thought');
 
 const userSchema = new Schema(
   {
@@ -12,21 +13,21 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      // Need to add email address validator
+      validate: {
+        validator: () => Promise.resolve(false),
+        message: 'Email validation failed'
+      }
     },
-    thoughts: [
-        {
-          type: Schema.Types.ObjectId,
-          ref: 'Thought',
-        }
-      ],
-    friends: {
-      
-    },
+    thoughts: [thoughtSchema],
+    friends: [{
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    }],
   },
   {
     toJSON: {
       virtuals: true,
+      getters: true
     },
     id: false,
   }
@@ -41,4 +42,4 @@ userSchema
 
 const User = model('user', userSchema);
 
-module.exports = userSchema;
+module.exports = User;
