@@ -14,9 +14,12 @@ const userSchema = new Schema(
       unique: true,
       // Need to add email address validator
     },
-    thoughts: {
-     
-    },
+    thoughts: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: 'Thought',
+        }
+      ],
     friends: {
       
     },
