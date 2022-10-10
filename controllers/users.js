@@ -4,17 +4,6 @@ const userController = {
     // Get all users
     getAllUsers(req, res) {
         User.find({})
-            .then(userData => res.json(userData))
-            .catch(err => {
-                console.log(err);
-                res.status(500).json(err);
-            })
-    },
-    // Get a singlie user by ID
-    getUserById(req, res) {
-        User.findOne({ _id: req.params.id })
-            .populate('thoughts')
-            .populate('friends')
             .select('-__v')
             .then(userData => res.json(userData))
             .catch(err => {
@@ -22,8 +11,23 @@ const userController = {
                 res.status(500).json(err);
             })
     },
+    // Get a single user by ID
+    getUserById(req, res) {
+        User.findOne({ _id: req.params.id })
+            .then(userData => {
+                if(!userData) {
+                    res.status(400).json({message: 'No User Found with This ID!'});
+                    return;
+                };
+                res.json(userData);
+            })
+            .catch(err => {
+                console.log(err);
+                res.status(500).json(err);
+            })
+    },
     // Create a new user
-    createNewUser(req , res) {
+    createNewUser(req, res) {
         User.create(req.body)
             .then(userData => res.json(userData))
             .catch(err => {
@@ -35,11 +39,11 @@ const userController = {
     updateUser(req, res) {
         User.findOneAndUpdate({_id: req.params.id}, {$set: req.body}, {runValidators: true, new: true})
             .then(userData => {
-                if(userData) {
-                    res.json(userData);
-                } else {
-                    res.status(400).json({message: 'No User Found with This ID!'})
+                if(!userData) {
+                    res.status(400).json({message: 'No User Found with This ID!'});
+                    return;
                 };
+                res.json(userData);
             })
             .catch(err => {
                 console.log(err);
@@ -50,11 +54,11 @@ const userController = {
     removeUser(req, res) {
         User.findOneAndDelete({_id: req.params.id})
             .then(userData => {
-                if(userData){
-                    res.json(userData);
-                } else {
-                    res.status(400).json({message: 'No User Found with This ID!'})
+                if(!userData) {
+                    res.status(400).json({message: 'No User Found with This ID!'});
+                    return;
                 };
+                res.json(userData);
             })
             .catch(err => {
                 console.log(err);
@@ -69,11 +73,11 @@ const userController = {
             { runValidators: true, new: true }
         )
             .then(userData => {
-                if(userData) {
-                    res.json(userData);
-                } else {
-                    res.status(400).json({message: 'No User Found with This ID!'})
+                if(!userData) {
+                    res.status(400).json({message: 'No User Found with This ID!'});
+                    return;
                 };
+                res.json(userData);
             })
             .catch(err => {
                 console.log(err);
@@ -82,17 +86,18 @@ const userController = {
     },
     // Delete an exisiting friend
     removeFriend(req, res) {
-        User.findOneAndDelete(
+        User.findOneAndUpdate(
             { _id: req.params.id },
-            { $pull: { friends: { friendId: req.params.friendsId }}},
+            { $pull: { friends: { friendsId: req.params.friendsId }}},
             { runValidators: true, new: true}
         )
             .then(userData => {
-                if(userData){
-                    res.json(userData);
-                } else {
-                    res.status(400).json({ message: 'No User Found with This ID!'})
+                console.log(userData);
+                if(!userData) {
+                    res.status(400).json({message: 'No User Found with This ID!'});
+                    return;
                 };
+                res.json(userData);
             })
             .catch(err => {
                 console.log(err);
