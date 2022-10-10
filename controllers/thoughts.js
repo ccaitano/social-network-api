@@ -6,7 +6,7 @@ const thoughtController = {
         
     },
     // Get a single thought by ID
-    getThoughtByID({ params }, res) {
+    getThoughtById({ params }, res) {
 
     },
     // Create a new thought
