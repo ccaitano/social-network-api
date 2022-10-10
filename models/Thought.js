@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const User = require('../models/User');
 
 const reactionSchema = new Schema(
   {
@@ -55,6 +56,6 @@ thoughtSchema
     return this.reactions.length;
   });
   
-const Thought = model('thought', thoughtSchema);
+const Thought = model('Thought', thoughtSchema);
 
 module.exports = Thought;

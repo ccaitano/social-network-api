@@ -4,8 +4,12 @@ const userController = {
     // Get all users
     getAllUsers(req, res) {
         User.find({})
+            .populate({path: 'thoughts', select: '-__v'})
             .select('-__v')
-            .then(userData => res.json(userData))
+            .then(userData => {
+                res.json(userData);
+                console.log(userData);
+            })
             .catch(err => {
                 console.log(err);
                 res.status(500).json(err);
