@@ -25,15 +25,25 @@ Option 1 - Launch from the Terminal:
 - Run `npm start` in the terminal
 - Open `http://localhost:3001` in insomnia to view all routes
 
-Walkthrough of Tech Blog Functionality:
-Part 1:
+Walkthrough of API Initialization:
 
-https://user-images.githubusercontent.com/103088786/189594610-b50c1bfb-9d47-453d-9a80-9aa35a2d232f.mp4
+https://user-images.githubusercontent.com/103088786/194815046-531feb0f-9c96-4b41-ae2f-365a767551ff.mp4
 
-Part 2:
+Walkthrough of GET: Find All Users, GET: Find User by ID, POST: Create New User, PUT: Update Existing User, DELETE: Remove User:
 
-https://user-images.githubusercontent.com/103088786/189594641-0ea74e6d-9ccb-4c69-9918-e015775b2e6b.mp4
+https://user-images.githubusercontent.com/103088786/194814903-74e6dac9-9ded-43cd-8e4f-1389d458d03e.mp4
 
+Walkthrough of POST: Add Friend, DELETE: Remove Friend:
+
+https://user-images.githubusercontent.com/103088786/194814939-b49bcd7e-c676-4668-837e-2026e841cc7b.mp4
+
+Walkthrough of GET: Find All Thoughts, GET: Find Thoughts By ID, POST: Create a New Thought, PUT: Update Exisiting Thought DELETE: Remove Thought:
+
+https://user-images.githubusercontent.com/103088786/194814965-1370afbe-6c12-4a57-a7ae-390d32448015.mp4
+
+Walkthrough of POST: Add Reaction, DELETE: Remove Reaction:
+
+https://user-images.githubusercontent.com/103088786/194814990-ec017e6c-d31f-4f02-8aa7-8328d3b9089a.mp4
 
 ## **License**
 
